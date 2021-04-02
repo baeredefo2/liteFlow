@@ -143,6 +143,7 @@ public class FlowExecutor {
 		}catch(Exception e){
 			slot.setSuccess(false);
 			slot.setErrorMsg(e.getMessage());
+			throw e;
 		}finally{
 			if(!isInnerChain) {
 				slot.printStep();
