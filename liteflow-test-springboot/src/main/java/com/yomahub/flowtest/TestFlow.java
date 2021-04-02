@@ -2,6 +2,7 @@ package com.yomahub.flowtest;
 
 import com.yomahub.liteflow.core.FlowExecutor;
 import com.yomahub.liteflow.entity.data.Slot;
+import com.yomahub.liteflow.exception.ChainEndException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -17,7 +18,12 @@ public class TestFlow implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Slot slot = flowExecutor.execute("chain3", "it's a request");
-        System.out.println(slot);
+        try{
+            Slot slot = flowExecutor.execute("chain1", "it's a request");
+            System.out.println(slot);
+        }catch (ChainEndException e){
+            e.printStackTrace();
+        }
+
     }
 }
